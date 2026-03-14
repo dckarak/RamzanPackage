@@ -570,7 +570,11 @@ console.error("Database connection failed",e);
 
 function handleSearch(){
 
-const input=document.getElementById('cnicInput').value.trim();
+let input=document.getElementById('cnicInput').value.trim();
+
+/* REMOVE DASHES */
+
+input = input.replace(/-/g,"");
 
 if(!/^\d{13}$/.test(input)){
 
