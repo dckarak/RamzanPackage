@@ -14,222 +14,436 @@
 
 <style>
 
-:root{
---green:#0b7a38;
---dark:#065628;
-}
-
 body{
-
 margin:0;
 font-family:'Noto Nastaliq Urdu',serif;
 background:url("ramzan-bg.png") center/cover no-repeat fixed;
 min-height:100vh;
+color:white;
 display:flex;
 flex-direction:column;
 align-items:center;
+}
+/* FORM WRAPPER */
+
+.form-wrapper{
+
+position:relative;
+z-index:2;
+transition: all .35s ease;
+padding:20px;
+border-radius:12px;
 
 }
 
+/* ACTIVE STATE */
+
+.form-wrapper.active{
+
+transform:translateY(-25px) scale(1.02);
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(6px);
+box-shadow:0 15px 45px rgba(0,0,0,.5);
+
+}
+
+/* DARK BACKGROUND */
+
+.focus-overlay{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.65);
+opacity:0;
+pointer-events:none;
+transition:.3s;
+z-index:1;
+
+}
+
+.focus-overlay.active{
+
+opacity:1;
+pointer-events:auto;
+
+}
 /* HEADER */
 
 .header{
 
 width:100%;
 max-width:480px;
-background:linear-gradient(90deg,#0b7a38,#075b2a);
-color:white;
-padding:12px 10px;
-border-radius:0 0 10px 10px;
-position:relative;
-box-shadow:0 4px 15px rgba(0,0,0,.3);
-
-}
-
-.header-inner{
 
 display:flex;
 align-items:center;
-justify-content:center;
-gap:12px;
+justify-content:space-between;
 
+padding:6px 6px;
+
+background:linear-gradient(#0c7c3a,#065628);
+
+border-radius:0 0 12px 12px;
+
+box-shadow:0 5px 20px rgba(0,0,0,.4);
+
+}
+
+
+.header-inner{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
 }
 
 .logo{
 
-height:50px;
+
+width:28%;
+
+}
+
+.moon{
+
+height:20%;
+width:20%;
 
 }
 
 .header-text{
 
+flex:1;
 text-align:center;
-line-height:1.4;
+color:white;
+
+padding:0 4px;
 
 }
 
 .header-text h1{
 
 margin:0;
-font-size:20px;
+font-size:32px;
 
 }
 
 .header-text p{
 
 margin:0;
-font-size:13px;
+font-size:20px;
 
 }
+/* INPUT LIFT EFFECT */
 
-/* MOON ICON */
+.input-box{
 
-.moon{
-
-position:absolute;
-top:8px;
-left:10px;
-height:45px;
-
+transition: all 0.25s ease;
 }
 
-/* MAIN AREA */
+.input-box.active{
+
+transform: translateY(-8px);
+box-shadow:0 8px 20px rgba(0,0,0,.25);
+
+}
+/* MAIN */
 
 .main{
-
 max-width:480px;
 width:92%;
 text-align:center;
-color:white;
-margin-top:20px;
-
+margin-top:0px;
 }
 
 .main h2{
-
-font-size:32px;
-margin-bottom:10px;
-
+font-size:28px;
+margin-bottom:6px;
 }
 
 .main p{
-
-margin-top:0;
-font-size:15px;
-
+font-size:16px;
 }
 
 /* INPUT */
 
 .input-box{
-
 background:white;
-border-radius:10px;
 padding:10px;
+border-radius:10px;
 display:flex;
 align-items:center;
 gap:10px;
 margin-top:20px;
-
 }
 
 .input-box img{
-
-height:30px;
-
+height:28px;
 }
 
 input{
+flex:1;
+border:none;
+outline:none;
+font-size:18px;
+text-align:center;
+}
+
+/* BUTTON */
+
+button{
+margin-top:15px;
+width:100%;
+padding:12px;
+font-size:18px;
+background:linear-gradient(#0c7c3a,#065628);
+border:none;
+border-radius:8px;
+color:white;
+cursor:pointer;
+}
+
+/* NOTICE */
+
+.notice{
+background:#ffffffdd;
+color:#333;
+margin-top:10px;
+padding:5px;
+border-radius:10px;
+}
+
+footer{
+margin-top:15px;
+text-align:center;
+font-size:13px;
+}
+
+/* POPUP */
+
+.popup-overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.6);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:999;
+}
+
+.popup-box{
+background:#1d2a3c;
+width:90%;
+max-width:420px;
+padding:25px;
+border-radius:14px;
+text-align:center;
+}
+
+.popup-box h2{
+margin-top:10px;
+font-size:28px;
+}
+
+.popup-box p{
+line-height:1.8;
+}
+
+.icon-success{
+width:70px;
+height:70px;
+background:#38a169;
+border-radius:50%;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:32px;
+}
+/* FORM CONTAINER */
+
+.form-wrapper{
+
+position:relative;
+z-index:3;
+padding:20px;
+border-radius:14px;
+transition:all .35s ease;
+
+}
+
+/* ACTIVE FORM */
+
+.form-wrapper.active{
+
+transform:translateY(-30px) scale(1.02);
+box-shadow:0 20px 50px rgba(0,0,0,.55);
+backdrop-filter:blur(6px);
+
+}
+
+/* DARK BACKGROUND */
+
+.focus-overlay{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.65);
+opacity:0;
+pointer-events:none;
+transition:.35s;
+z-index:1;
+
+}
+
+.focus-overlay.active{
+
+opacity:1;
+pointer-events:auto;
+
+}
+
+/* INPUT BOX */
+
+.input-box{
+
+display:flex;
+align-items:center;
+background:white;
+padding:10px;
+border-radius:10px;
+gap:10px;
+transition:.3s;
+
+}
+
+/* FLOATING EFFECT */
+
+.input-box.active{
+
+transform:translateY(-6px);
+box-shadow:0 8px 25px rgba(0,0,0,.35);
+
+}
+
+/* INPUT */
+
+#cnicInput{
 
 flex:1;
 border:none;
 outline:none;
 font-size:18px;
 text-align:center;
+letter-spacing:1px;
+
+}
+
+/* ICON */
+
+#cnicIcon{
+
+height:28px;
+transition:.3s;
+
+}
+
+.input-box.active #cnicIcon{
+
+transform:scale(1.2) rotate(-8deg);
 
 }
 
 /* BUTTON */
 
-button{
+.search-btn{
 
 margin-top:15px;
 width:100%;
 padding:12px;
 font-size:18px;
-background:linear-gradient(#0b7a38,#065628);
-color:white;
+background:linear-gradient(#0c7c3a,#065628);
 border:none;
 border-radius:8px;
+color:white;
 cursor:pointer;
+transition:.25s;
 
 }
 
-/* RESULT */
+/* BUTTON GLOW */
 
-#result{
+.search-btn:hover{
 
-margin-top:20px;
-display:none;
-padding:15px;
-border-radius:10px;
+box-shadow:0 0 15px #2ecc71,0 0 35px #27ae60;
 
 }
 
-.success-box{
+/* FLOAT ANIMATION */
 
-background:#ffffffdd;
-color:#222;
+@keyframes float{
 
-}
-
-.error-box{
-
-background:#ffeaea;
-color:#c53030;
+0%{transform:translateY(0)}
+50%{transform:translateY(-6px)}
+100%{transform:translateY(0)}
 
 }
 
-.data-row{
+.form-wrapper.active{
 
+animation:float 3s ease-in-out infinite;
+
+}
+.icon-fail{
+width:70px;
+height:70px;
+background:#e53e3e;
+border-radius:50%;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:32px;
+}
+
+.popup-details{
+margin-top:15px;
+border-top:1px solid #fff3;
+padding-top:10px;
+}
+
+.popup-row{
 display:flex;
 justify-content:space-between;
-border-bottom:1px solid #ddd;
 padding:6px 0;
-
 }
 
-/* PRINT */
-
-.btn-print{
-
-margin-top:10px;
-background:#555;
-
-}
-
-/* NOTICE */
-
-.notice{
-
-background:#ffffffdd;
+.popup-buttons{
 margin-top:20px;
-padding:15px;
-border-radius:10px;
-color:#333;
-font-size:14px;
-
+display:flex;
+gap:10px;
 }
 
-/* FOOTER */
+.popup-buttons button{
+flex:1;
+font-size:16px;
+}
 
-footer{
+.share{
+background:#2b66d9;
+}
 
-color:white;
-margin-top:15px;
-text-align:center;
-font-size:13px;
-
+.close{
+background:#ddd;
+color:#000;
 }
 
 </style>
@@ -240,46 +454,48 @@ font-size:13px;
 
 <div class="header">
 
-<img src="moon.png" class="moon">
-
-<div class="header-inner">
-
 <img src="KP_logo.png" class="logo">
 
 <div class="header-text">
 
 <h1>حکومت خیبر پختونخوا</h1>
-<p>رمضان مشن کوالیٹی — ضلع کرک</p>
+<p>رمضان پیکج-ضلع کرک</p>
 
 </div>
 
-</div>
+<img src="moon.png" class="moon">
 
 </div>
 
 
 <div class="main">
 
+<div class="form-wrapper" id="formWrapper">
+
 <h2>اپنی اہلیت چیک کریں</h2>
 
 <p>اپنا 13 ہندسوں کا شناختی کارڈ نمبر درج کریں</p>
 
-<div class="input-box">
+<div class="input-box" id="inputBox">
 
-<img src="https://cdn-icons-png.flaticon.com/512/747/747376.png">
+<img id="cnicIcon" src="https://cdn-icons-png.flaticon.com/512/747/747376.png">
 
-<input type="text" id="cnicInput" maxlength="13" placeholder="شناختی کارڈ نمبر">
+<input 
+type="text"
+id="cnicInput"
+maxlength="15"
+placeholder="شناختی کارڈ نمبر">
 
 </div>
 
-<button onclick="handleSearch()">اسٹیٹس چیک کریں</button>
+<button class="search-btn" onclick="handleSearch()">اسٹیٹس چیک کریں</button>
 
-<div id="result"></div>
+</div>
+
+<div class="focus-overlay" id="focusOverlay"></div>
 
 <div class="notice">
-
-یہ سہولت ضلعی انتظامیہ کرک کی جانب سے عوام الناس کی سہولت کے لئے فراہم کی گئی ہے۔
-
+یہ معلوماتی سہولت ضلعی انتظامیہ کرک کی جانب سے عوام الناس کو فراہم کی گئی ہے۔ 
 <hr>
 
 خصوصی شکریہ ڈپٹی کمشنر کرک
@@ -295,6 +511,33 @@ font-size:13px;
 تیار کردہ: <strong>NASRULLAH KHATTAK</strong>
 
 </footer>
+
+</div>
+
+
+<!-- POPUP -->
+
+<div id="popupOverlay" class="popup-overlay">
+
+<div class="popup-box">
+
+<div id="popupIcon"></div>
+
+<h2 id="popupTitle"></h2>
+
+<p id="popupMessage"></p>
+
+<div id="popupDetails"></div>
+
+<div class="popup-buttons">
+
+<button class="close" onclick="closePopup()">بند کریں</button>
+
+<button class="share" id="shareBtn" onclick="shareResult()">شیئر کریں</button>
+
+</div>
+
+</div>
 
 </div>
 
@@ -328,13 +571,11 @@ console.error("Database connection failed",e);
 function handleSearch(){
 
 const input=document.getElementById('cnicInput').value.trim();
-const resultDiv=document.getElementById('result');
 
 if(!/^\d{13}$/.test(input)){
 
-resultDiv.className="error-box";
-resultDiv.innerHTML="براہ کرم 13 ہندسوں کا شناختی کارڈ نمبر درج کریں";
-resultDiv.style.display="block";
+showFailPopup("براہ کرم 13 ہندسوں کا شناختی کارڈ نمبر درج کریں");
+
 return;
 
 }
@@ -343,41 +584,153 @@ const record=excelData.find(row=>String(row.cnic).trim()===input);
 
 if(record){
 
-resultDiv.className="success-box";
-
-resultDiv.innerHTML=`
-
-<div class="data-row"><span>شناختی کارڈ</span><span>${record.cnic}</span></div>
-<div class="data-row"><span>مستحق فرد</span><span>${record.name}</span></div>
-<div class="data-row"><span>ٹرانزیکشن آئی ڈی</span><span>${record.ID}</span></div>
-<div class="data-row"><span>تاریخ</span><span>${record.date}</span></div>
-<div class="data-row"><span>رقم</span><span>Rs ${record.amount}</span></div>
-
-<button class="btn-print" onclick="window.print()">پرنٹ کریں</button>
-
-`;
+showSuccessPopup(record);
 
 }
 
 else{
 
-resultDiv.className="error-box";
-resultDiv.innerHTML="آپ اس پروگرام کے مستحق افراد میں شامل نہیں ہیں";
+showFailPopup("آپ کا نام مستحق افراد کی فہرست میں شامل نہیں ہے۔");
 
 }
 
-resultDiv.style.display="block";
+}
+
+function showSuccessPopup(record){
+
+document.getElementById("popupOverlay").style.display="flex";
+
+document.getElementById("popupIcon").innerHTML='<div class="icon-success">✓</div>';
+
+document.getElementById("popupTitle").innerText="مبارک ہو!";
+
+document.getElementById("popupMessage").innerText="آپ رمضان پیکج کے مستحق ہیں۔ آپ قریبی JazzCash ریٹیلر سے 12500 روپے وصول کر سکتے ہیں۔";
+
+document.getElementById("popupDetails").innerHTML=`
+
+<div class="popup-details">
+
+<div class="popup-row"><span>نام</span><span>${record.name}</span></div>
+
+<div class="popup-row"><span>شناختی کارڈ</span><span>${record.cnic}</span></div>
+
+<div class="popup-row"><span>ٹرانزیکشن آئی ڈی</span><span>${record.ID}</span></div>
+
+<div class="popup-row"><span>موبائل</span><span>${record.mobile}</span></div>
+
+</div>
+
+`;
+
+window.currentRecord=record;
 
 }
 
-document.getElementById("cnicInput").addEventListener("keypress",function(e){
+function showFailPopup(message){
 
-if(e.key==="Enter") handleSearch();
+document.getElementById("popupOverlay").style.display="flex";
+
+document.getElementById("popupIcon").innerHTML='<div class="icon-fail">✕</div>';
+
+document.getElementById("popupTitle").innerText="معذرت";
+
+document.getElementById("popupMessage").innerText=message;
+
+document.getElementById("popupDetails").innerHTML="";
+
+document.getElementById("shareBtn").style.display="none";
+
+}
+
+function closePopup(){
+
+document.getElementById("popupOverlay").style.display="none";
+
+const input = document.getElementById("cnicInput");
+
+input.value = "";
+input.focus();
+
+}
+
+function shareResult(){
+
+const r=window.currentRecord;
+
+const text=
+
+`رمضان پیکج 2026
+
+نام: ${r.name}
+شناختی کارڈ: ${r.cnic}
+ٹرانزیکشن آئی ڈی: ${r.ID}
+موبائل: ${r.mobile}
+
+رقم: 12500 روپے
+JazzCash ریٹیلر سے وصول کریں`;
+
+navigator.clipboard.writeText(text);
+
+alert("معلومات کاپی ہو گئی ہیں۔");
+
+}
+
+const input = document.getElementById("cnicInput");
+const form = document.getElementById("formWrapper");
+const overlay = document.getElementById("focusOverlay");
+const inputBox = document.getElementById("inputBox");
+
+/* FOCUS EFFECT */
+
+input.addEventListener("focus", () => {
+
+form.classList.add("active");
+overlay.classList.add("active");
+inputBox.classList.add("active");
 
 });
 
-</script>
+/* CLICK OUTSIDE */
 
+overlay.addEventListener("click", resetFocus);
+
+/* INPUT BLUR */
+
+input.addEventListener("blur", () => {
+
+setTimeout(resetFocus,200);
+
+});
+
+function resetFocus(){
+
+form.classList.remove("active");
+overlay.classList.remove("active");
+inputBox.classList.remove("active");
+
+}
+
+/* CNIC AUTO FORMAT */
+
+input.addEventListener("input", function(){
+
+let value = this.value.replace(/\D/g,"");
+
+if(value.length>13) value=value.slice(0,13);
+
+let formatted = value;
+
+if(value.length>5)
+formatted=value.slice(0,5)+"-"+value.slice(5);
+
+if(value.length>12)
+formatted=value.slice(0,5)+"-"+value.slice(5,12)+"-"+value.slice(12);
+
+this.value=formatted;
+
+});
+</script>
+<div class="focus-overlay" id="focusOverlay"></div>
 </body>
 
 </html>
